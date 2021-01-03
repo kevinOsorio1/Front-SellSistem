@@ -1,13 +1,16 @@
 import React from 'react'
 
+import InventoryTable from "../../components/InventoryTable/InventoryTable"
+
 /**
  * @Container - container for inventory store
  */
 function Inventory() {
   return (
     <div>
-      <p>Inventory</p>
-    </div>)
+      <InventoryTable />
+    </div>
+  )
 }
 
 export default Inventory

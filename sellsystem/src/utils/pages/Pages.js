@@ -15,7 +15,7 @@ export const routes = [
   },
   {
     path: "/inventory",
-    text:"inventario",
+    text:"Inventario",
     sidebar: () => <div>Inventory</div>,
     icon: <AllInboxRoundedIcon />,
     main : <Inventory/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Link, Switch, Route } from "react-router-dom"
+import { Link, Switch, Route} from "react-router-dom"
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -20,18 +20,18 @@ import { header } from "../../utils/styles/styles"
 import { routes } from "../../utils/pages/Pages"
 
 export default function Header() {
-
   const classes = header()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const route = routes
   const [sideDrawerTittle, setSideDrawerTittle] = React.useState("Ventas")
-
+  
   /**
    * @method - method to open the sideDrawer
    */
   const handleDrawerOpen = () => {
     setOpen(true);
+    
   };
 
   /**
