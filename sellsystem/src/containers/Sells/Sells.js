@@ -50,7 +50,7 @@ function Sells() {
     <div>
       <div style={{marginBottom:"10px"}}>
         <Button onClick={toggleOpenPopOver} variant="contained" color="primary">
-          crear nuevo producto
+          crear nueva venta
         </Button>
         {openPopOver && (
           <CreateSell
