@@ -127,10 +127,10 @@ const CreateSell = ({ onCreateSell, open, toggleModal }) => {
             bgcolor="background.paper"
           >
             <Box p={1} className={classes.cancelButton}>
-              <Button onClick={toggleModal}>Cancelar</Button>
+              <Button onClick={toggleModal} variant="contained" color="secondary">Cancelar</Button>
             </Box>
             <Box p={1}>
-              <Button onClick={saveSell}>Guardar</Button>
+              <Button onClick={saveSell} variant="contained" color="primary">Guardar</Button>
             </Box>
           </Box>
         </Paper>

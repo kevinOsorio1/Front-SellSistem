@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core"
 import React, { useCallback, useMemo, useState } from "react"
 import CreateSell from "../../components/createSell/CreateSell"
-import Table from "../../components/SellsTable/Table"
+import Table from "../../components/Table/Table"
 import { usePopOver } from "../../utils/customHooks/usePopOver"
 
 /**
@@ -30,31 +30,35 @@ function Sells() {
   ]
   const [data, setData] = useState(rows)
   const [columnsData, setColumsData] = useState(columns)
-  const [ openPopOver, toggleOpenPopOver ] = usePopOver()
+  const [openPopOver, toggleOpenPopOver] = usePopOver()
   const dataLength = useMemo(() => {
     return data.length
   }, [data])
+
   const createNewSell = useCallback(
     (name, total, code) => {
-      const id = dataLength
+      const id = dataLength + 1
       setData((prevState) => [
         ...prevState,
         { id: id, name: name, total: total, code: code },
       ])
-      console.log("name",name,"total",total,"code",code)
     },
     [dataLength]
   )
 
   return (
     <div>
-      <div>
-        <Button onClick={toggleOpenPopOver}>crear nuevo producto</Button>
-        {openPopOver && <CreateSell
-          onCreateSell={createNewSell}
-          open={openPopOver}
-          toggleModal={toggleOpenPopOver}
-        />}
+      <div style={{marginBottom:"10px"}}>
+        <Button onClick={toggleOpenPopOver} variant="contained" color="primary">
+          crear nuevo producto
+        </Button>
+        {openPopOver && (
+          <CreateSell
+            onCreateSell={createNewSell}
+            open={openPopOver}
+            toggleModal={toggleOpenPopOver}
+          />
+        )}
       </div>
       <Table rows={data} columns={columnsData} />
     </div>

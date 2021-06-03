@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Table from '../../components/SellsTable/Table';
+import Table from '../../components/Table/Table';
 
 /**
  * @Container - container for inventory store
