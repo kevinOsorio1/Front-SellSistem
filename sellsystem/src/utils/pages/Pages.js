@@ -15,6 +15,7 @@ export const routes = [
   },
   {
     path: "/inventory",
+    exact:true,
     text:"Inventario",
     sidebar: () => <div>Inventory</div>,
     icon: <AllInboxRoundedIcon />,
@@ -22,6 +23,7 @@ export const routes = [
   },
   {
     path: "/statistics",
+    exact:true,
     text:"Estadisticas",
     sidebar: () => <div>Estadisticas</div>,
     icon: <ShowChartRoundedIcon />,
