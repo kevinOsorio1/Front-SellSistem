@@ -1,45 +1,60 @@
-import React from 'react';
-import clsx from 'clsx';
-import { Link, Switch, Route } from "react-router-dom"
-import { useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import React, { useEffect } from "react"
+import clsx from "clsx"
+import {
+  Link,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom"
+import { useTheme } from "@material-ui/core/styles"
+import Drawer from "@material-ui/core/Drawer"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import List from "@material-ui/core/List"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import Typography from "@material-ui/core/Typography"
+import Divider from "@material-ui/core/Divider"
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
+import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText"
 import { header } from "../../utils/styles/styles"
 import { routes } from "../../utils/pages/Pages"
 
 export default function Header() {
-
   const classes = header()
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const theme = useTheme()
+  const [open, setOpen] = React.useState(false)
   const route = routes
-  const [sideDrawerTittle, setSideDrawerTittle] = React.useState("Ventas")
+  const [sideDrawerTittle, setSideDrawerTittle] = React.useState()
+  const location = useLocation()
 
+  useEffect(() => {
+    const foundRoute = route.find((element) => {
+      return element.path === location.pathname
+    })
+    if (foundRoute) {
+      setSideDrawerTittle(foundRoute.text)
+    } else {
+      setSideDrawerTittle("not found")
+    }
+  }, [location, route])
   /**
    * @method - method to open the sideDrawer
    */
   const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   /**
    * @method - method to close the sideDrawer
    */
   const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   /**
    * @method - method to change the tittle sideDrawer
@@ -90,14 +105,18 @@ export default function Header() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
         <List>
           {route.map((text, index) => (
             <Link to={text.path} key={text.path}>
-              <ListItem button onClick={()=>handleItemClick(text.text)}>
+              <ListItem button onClick={() => handleItemClick(text.text)}>
                 <ListItemIcon>{text.icon}</ListItemIcon>
                 <ListItemText primary={text.text} />
               </ListItem>
@@ -109,18 +128,21 @@ export default function Header() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-          {route.map((route, index) => (
+          {route.map((element, index) => {
             // Render more <Route>s with the same paths as
             // above, but different components this time.
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              children={route.main}
-            />
-          ))}
-        </Switch> 
+            return (
+              <Route
+                key={index}
+                path={`${element.path}`}
+                url={element.path}
+                exact={element.exact}
+                children={element.main}
+              />
+            )
+          })}
+        </Switch>
       </main>
-    </div >
-  );
+    </div>
+  )
 }

@@ -15,13 +15,15 @@ export const routes = [
   },
   {
     path: "/inventory",
-    text:"inventario",
+    exact:true,
+    text:"Inventario",
     sidebar: () => <div>Inventory</div>,
     icon: <AllInboxRoundedIcon />,
     main : <Inventory/>
   },
   {
     path: "/statistics",
+    exact:true,
     text:"Estadisticas",
     sidebar: () => <div>Estadisticas</div>,
     icon: <ShowChartRoundedIcon />,
