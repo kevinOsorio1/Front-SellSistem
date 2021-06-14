@@ -7,7 +7,12 @@ export default function Table({rows,columns}) {
   const classes = tableStyles()
   return (
     <div className={classes.table}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection sortModel={[
+    {
+      field: 'id',
+      sort: 'desc',
+    },
+  ]}/>
     </div>
   );
 }
