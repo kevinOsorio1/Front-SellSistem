@@ -39,13 +39,13 @@ function Sells() {
     (name, total, code) => {
       const id = dataLength + 1
       setData((prevState) => [
-        ...prevState,
         { id: id, name: name, total: total, code: code },
+        ...prevState
       ])
     },
     [dataLength]
   )
-
+console.log(data)
   return (
     <div>
       <div style={{marginBottom:"10px"}}>
